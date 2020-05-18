@@ -1,0 +1,3 @@
+include ':app', ':DFileSelector_modile'
+
+project(':DFileSelector_modile').projectDir = new File('DFileSelector')
