@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    <!--    android:focusable="true"-->
+    <!--    android:focusableInTouchMode="true"-->
+    <!--    <requestFocus />-->
+
+        <!--去除输入法弹框-->
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="6dp"
+            >
+            <TextView
+                android:id="@+id/sample_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前时间:"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                />
+            <EditText
+                android:id="@+id/ed_now_time"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/tv_background_shape"
+                android:focusable="false"
+                android:hint=" now time"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="30dp"
+                />
+        </LinearLayout>
+
+        <!--    1_服务测试项    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/tv_background_shape"
+            android:layout_margin="26dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="35dp"
+                android:text="1_服务测试项"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:background="#008577"
+                />
+
+            <Button
+                android:id="@+id/bt_start_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bt_start_service"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+            <Button
+                android:id="@+id/bt_stop_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bt_stop_service"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+            <Button
+                android:id="@+id/bt_bind_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bt_bind_service"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+
+            <Button
+                android:id="@+id/bt_unbind_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:text="bt_unbind_service" />
+
+            <Button
+                android:id="@+id/bt_debug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bt_debug"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+        </LinearLayout>
+
+        <!--    2_OKhttp测试项    -->
+        <com.example.log_catcher.test_demo.okhttp_xml_jason_test.Okhttp4Demo
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+        />
+
+        <!--    3_文件选择器测试项    -->
+        <com.example.log_catcher.test_demo.file_select_test.FileSelect
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
+
+        <!--    4_xml解析    -->
+        <com.example.log_catcher.test_demo.xml_json_test.XmlJasonParseTest
+            android:id="@+id/layout_file_select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
+
+<!--        &lt;!&ndash;    OKhttp测试项    &ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:background="@drawable/tv_background_shape"-->
+<!--            android:layout_margin="10dp"-->
+<!--            >-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:textSize="35dp"-->
+<!--                android:text="OKhttp测试项"-->
+<!--                android:textStyle="bold"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="#008577"-->
+<!--                />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/bt_okhttp_debug"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="bt_okhttp_debug"-->
+<!--                android:textSize="20dp"-->
+<!--                android:gravity="left"-->
+<!--                android:layout_margin="6dp"-->
+<!--                />-->
+<!--        </LinearLayout>-->
+
+
+
+    </LinearLayout>
+    <!--    <fragment-->
+    <!--        android:id="@+id/left_fragment"-->
+    <!--        android:name="com.example.log_catcher.fragment.LeftFragment"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_weight="1"-->
+    <!--        />-->
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/another_right_fragment"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_weight="1"-->
+    <!--        />-->
+
+    <!--    <fragment-->
+    <!--        android:id="@+id/right_fragment"-->
+    <!--        android:name="com.example.myapplication.RightFragment"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:layout_weight="1"-->
+    <!--        />-->
+</ScrollView>
