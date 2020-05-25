@@ -123,19 +123,15 @@ public class FastJsonTest {
             LogHelper.getInstance().w("obj2:" +obj2);
             for(Iterator iterator = jsonArray.iterator(); iterator.hasNext();) {
                     JSONObject jsonObject1 = (JSONObject) iterator.next();
-//                    LogHelper.getInstance().w(jsonObject1);
-                    System.out.println(jsonObject1);
+                    LogHelper.getInstance().w(String.valueOf(jsonObject1));
+//                    System.out.println(jsonObject1);
                 }
             LogHelper.getInstance().w("--------------分隔符-------------");
             Info_util iu = JSON.parseObject(jsontext, Info_util.class);//取得第一层JSONObject
             Info_data_util du = JSON.parseObject(iu.getData(), Info_data_util.class);//取得第二层JSONObject
             List<Info_array_Util> olist = JSON.parseArray(du.getRows(), Info_array_Util.class);//取得第三层JSONArray
-//            LogHelper.getInstance().w(iu);
-//            LogHelper.getInstance().w(du);
-//            LogHelper.getInstance().w(olist);
-              System.out.println(iu);
-              System.out.println(du);
-              System.out.println(olist);
-
+            LogHelper.getInstance().w(String.valueOf(iu));
+            LogHelper.getInstance().w(String.valueOf(du));
+            LogHelper.getInstance().w(String.valueOf(olist));
      }
 }
