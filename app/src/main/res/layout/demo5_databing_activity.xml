@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="title" type="java.lang.String" />
+        <variable name="title2" type="java.lang.String" />
+        <variable name="bt1_name" type="java.lang.String" />
+        <variable name="bt2_name" type="java.lang.String" />
+        <variable name="student" type="com.example.log_catcher.test_demo.test5_databinding.test_activity.Student" />
+        <variable name="main" type="com.example.log_catcher.test_demo.test5_databinding.test_activity.TestActivity" />
+        <variable name="userObservable" type="com.example.log_catcher.test_demo.test5_databinding.test_activity.UserObservable" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--    DataBinding测试项    -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/tv_background_shape"
+            android:layout_margin="10dp">
+<!--            android:text="5_DataBinding测试项"-->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="35dp"
+                android:text="@{student.name}"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:background="#DD8577" />
+            <TextView
+                android:id="@+id/tv_title2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="35dp"
+                android:text="@{userObservable.name}"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:background="#DD85FF" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/bt_bind_activity_debug1"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@{bt1_name}"
+                    android:textSize="20dp"
+                    android:gravity="left"
+                    android:layout_margin="6dp"
+                    android:onClick="@{main::clickHandler01}"
+                    />
+
+                <Button
+                    android:id="@+id/bt_bind_activity_debug2"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@{bt2_name}"
+                    android:textSize="20dp"
+                    android:gravity="left"
+                    android:layout_margin="6dp"
+                    android:onClick="@{main::clickHandler02}"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

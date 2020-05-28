@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.xml_json_test;
+package com.example.log_catcher.test_demo.test4_xml_json;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.log_catcher.R;
-import com.example.log_catcher.test_demo.xml_json_test.json.FastJsonTest;
-import com.example.log_catcher.test_demo.xml_json_test.xml.XmlSaxHandlerHelper;
+import com.example.log_catcher.test_demo.test4_xml_json.json.FastJsonTest;
+import com.example.log_catcher.test_demo.test4_xml_json.xml.XmlSaxHandlerHelper;
 import com.example.log_catcher.util.FileUtils;
 import com.example.log_catcher.util.LogHelper;
 //import com.google.gson.Gson;
@@ -33,7 +33,7 @@ public class XmlJasonParseTest extends LinearLayout implements View.OnClickListe
 
     public XmlJasonParseTest(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.layout4_xml_json,this);
+        LayoutInflater.from(context).inflate(R.layout.demo4_xml_json,this);
         mContext = context;
         initView();
         initData();
@@ -58,11 +58,11 @@ public class XmlJasonParseTest extends LinearLayout implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.bt_xml_parse:
-                LogHelper.getInstance().w("-------------Debug Start------------");
+                LogHelper.getInstance().w("-------------Debug Start1------------");
                 xmlParseDebug();
                 break;
             case R.id.bt_json_parse:
-                LogHelper.getInstance().w("-------------Debug Start------------");
+                LogHelper.getInstance().w("-------------Debug Start2------------");
                 jsonParseDebug();
                 break;
             default:

@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.xml_json_test.json;
+package com.example.log_catcher.test_demo.test4_xml_json.json;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

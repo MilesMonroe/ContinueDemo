@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--    OKhttp测试项    -->
+    <!--    DataBinding测试项    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="35dp"
-            android:text="2_OKhttp测试项"
+            android:text="5_DataBinding测试项"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:background="#008577"
@@ -32,21 +32,21 @@
             >
 
             <Button
-                android:id="@+id/bt_http_get"
+                android:id="@+id/bt_bind_debug1"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Http GET"
+                android:text="启动DataBinding test Activity"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"
                 />
             <Button
-                android:id="@+id/bt_http_post"
+                android:id="@+id/bt_bind_debug2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Http POST"
+                android:text="预留"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"

@@ -13,12 +13,12 @@
     <!--    android:focusableInTouchMode="true"-->
     <!--    <requestFocus />-->
 
-        <!--去除输入法弹框-->
-        <LinearLayout
-            android:layout_width="0px"
-            android:layout_height="0px"
-            android:focusable="true"
-            android:focusableInTouchMode="true" />
+<!--        &lt;!&ndash;去除输入法弹框&ndash;&gt;-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0px"-->
+<!--            android:layout_height="0px"-->
+<!--            android:focusable="true"-->
+<!--            android:focusableInTouchMode="true" />-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,6 +54,7 @@
             android:orientation="vertical"
             android:background="@drawable/tv_background_shape"
             android:layout_margin="26dp"
+            android:visibility="gone"
             >
 
             <TextView
@@ -116,26 +117,43 @@
         </LinearLayout>
 
         <!--    2_OKhttp测试项    -->
-        <com.example.log_catcher.test_demo.okhttp_xml_jason_test.Okhttp4Demo
+        <com.example.log_catcher.test_demo.test2_okhttp_xml_jason.Okhttp4Demo
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
         />
 
         <!--    3_文件选择器测试项    -->
-        <com.example.log_catcher.test_demo.file_select_test.FileSelect
+        <com.example.log_catcher.test_demo.test3_file_select.FileSelect
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             />
 
         <!--    4_xml解析    -->
-        <com.example.log_catcher.test_demo.xml_json_test.XmlJasonParseTest
+        <com.example.log_catcher.test_demo.test4_xml_json.XmlJasonParseTest
             android:id="@+id/layout_file_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             />
+
+        <!--    5_DataBinding Test    -->
+        <com.example.log_catcher.test_demo.test5_databinding.DataBindingTest
+            android:id="@+id/databinding_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
+
+        <!--    6_Rxjava Test    -->
+        <com.example.log_catcher.test_demo.test6_rxjava_retrofit.RxJavaRetrofitTest
+            android:id="@+id/rxjava_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
+
 
 <!--        &lt;!&ndash;    OKhttp测试项    &ndash;&gt;-->
 <!--        <LinearLayout-->

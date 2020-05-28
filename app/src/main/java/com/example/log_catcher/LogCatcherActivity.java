@@ -32,10 +32,10 @@ import com.duke.dfileselector.activity.DefaultSelectorActivity;
 import com.duke.dfileselector.util.FileSelectorUtils;
 import com.example.log_catcher.service.LogCatcherService;
 
-import com.example.log_catcher.test_demo.file_select_test.FileSelect;
-import com.example.log_catcher.test_demo.xml_json_test.XmlJasonParseTest;
+import com.example.log_catcher.test_demo.test5_databinding.DataBindingTest;
+import com.example.log_catcher.test_demo.test5_databinding.test_activity.TestActivity;
+import com.example.log_catcher.test_demo.test4_xml_json.XmlJasonParseTest;
 import com.example.log_catcher.util.LogHelper;
-import com.example.log_catcher.util.TimeUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -45,11 +45,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
-import com.example.log_catcher.test_demo.okhttp_xml_jason_test.Okhttp4Demo;
 //import android.support.v4.content.FileProvider;
 
-public class LogCatcherActivity extends AppCompatActivity implements View.OnClickListener {
+public class LogCatcherActivity extends AppCompatActivity implements View.OnClickListener, DataBindingTest.DataBindingListener {
     private final String TAG = "Miles";
     private Button bt_start_service;
     private Button bt_stop_service;
@@ -66,6 +64,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
     private LogCatcherService.Downloadbinder downloadbinder;
     private String selectFilePath = null;
     XmlJasonParseTest xmlJasonParseTest;
+    DataBindingTest dataBindingTest;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -120,6 +119,8 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
 
         //================xml调试布局===================
         xmlJasonParseTest = findViewById(R.id.layout_file_select);
+        dataBindingTest = findViewById(R.id.databinding_test);
+
     }
 
     void initData() {
@@ -144,17 +145,20 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         new TimeThread().start();
 //        System.out.print("123XXXXXXXXXXXXX");
 
-        //--------------xml_json_Demo-----------------
-        xmlJasonParseTest.setContext(mContext);
-        xmlJasonParseTest.setHandler(mHandler);
-        xmlJasonParseTest.setFilePath(selectFilePath);
-
         //--------------反射Demo-----------------
         //ReflectTest.reflectDebug();
 
         //--------------ThreadDemo-----------------
         //ThreadTest.threadDebug1();
         //ThreadTest.threadDebug2();
+
+        //--------------demo4 xml_json_Demo-----------------
+        xmlJasonParseTest.setContext(mContext);
+        xmlJasonParseTest.setHandler(mHandler);
+        xmlJasonParseTest.setFilePath(selectFilePath);
+
+        //--------------demo5 DataBindingDemo-----------------
+        dataBindingTest.setDataBindingListener(LogCatcherActivity.this);
     }
 
     //提示信息
@@ -338,6 +342,13 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         }
 
         return result;
+    }
+
+    //==================================demo5 DataBinding测试所需的接口实现============================================
+    @Override
+    public void startDataBindingTestAcivity(){
+        Intent intent = new Intent(mContext, TestActivity.class);
+        startActivity(intent);
     }
 
     //==================================文件权限============================================

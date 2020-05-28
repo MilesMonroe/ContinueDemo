@@ -23,6 +23,12 @@
             android:layout_margin="5dp"
             android:background="#008577"
             />
+        <!--去除输入法弹框-->
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="0px"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,12 +47,12 @@
                 android:gravity="left"
                 android:layout_margin="6dp"
                 />
-            <!--去除输入法弹框-->
-            <LinearLayout
-                android:layout_width="0px"
-                android:layout_height="0px"
-                android:focusable="true"
-                android:focusableInTouchMode="true" />
+<!--            &lt;!&ndash;去除输入法弹框&ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="0px"-->
+<!--                android:layout_height="0px"-->
+<!--                android:focusable="true"-->
+<!--                android:focusableInTouchMode="true" />-->
 
             <EditText
                 android:id="@+id/ed_showfilepath"

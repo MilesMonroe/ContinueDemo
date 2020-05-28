@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.reflect_test;
+package com.example.log_catcher.test_demo.test1_reflect;
 
 
 import com.example.log_catcher.util.LogHelper;
@@ -39,7 +39,7 @@ public class ReflectTest {
         LogHelper.getInstance().w("\n\n--------------2、这种静态获取的方法最常用，这个只是实例化了Class的对象，注意不是TimeUtil类的对象;----------------");
         Class<?> c1 = null;
         try {
-            c1 = Class.forName("com.example.log_catcher.test_demo.reflect_test.Persion");
+            c1 = Class.forName("com.example.log_catcher.test_demo.test1_reflect.Persion");
             //打印:
             LogHelper.getInstance().w("c1="+c1.getName());
         } catch (ClassNotFoundException e) {

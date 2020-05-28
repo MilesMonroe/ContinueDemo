@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.reflect_test;
+package com.example.log_catcher.test_demo.test1_reflect;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

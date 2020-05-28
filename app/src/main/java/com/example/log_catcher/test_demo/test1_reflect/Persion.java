@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.reflect_test;
+package com.example.log_catcher.test_demo.test1_reflect;
 import com.example.log_catcher.util.LogHelper;
 
 interface China{

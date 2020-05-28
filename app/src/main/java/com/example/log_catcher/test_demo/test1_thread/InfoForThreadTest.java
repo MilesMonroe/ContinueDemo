@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.thread_test;
+package com.example.log_catcher.test_demo.test1_thread;
 
 import com.example.log_catcher.util.LogHelper;
 

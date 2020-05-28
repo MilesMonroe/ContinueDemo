@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.xml_json_test.xml;
+package com.example.log_catcher.test_demo.test4_xml_json.xml;
 
 import com.example.log_catcher.util.ERROR;
 import com.example.log_catcher.util.LogHelper;

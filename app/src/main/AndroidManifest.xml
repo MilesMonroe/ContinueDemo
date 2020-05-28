@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.log_catcher"
-   >
-<!--    android:sharedUserId="android.uid.system"-->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-
+    package="com.example.log_catcher">
+    <!-- android:sharedUserId="android.uid.system" -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/log_64px"
@@ -15,28 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.log_catcher.LogCatcherActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".test_demo.test5_databinding.test_activity.TestActivity">
 
-<!--                <category android:name="android.in tent.category.LAUNCHER" />-->
-<!--                <category android:name="android.intent.category.START_APP" />-->
+        </activity>
 
-<!--                &lt;!&ndash;        开机启动后会占用HOME界面        &ndash;&gt;-->
-<!--&lt;!&ndash;                <category android:name="android.intent.category.HOME" />&ndash;&gt;-->
-<!--&lt;!&ndash;                <category android:name="android.intent.category.DEFAULT" />&ndash;&gt;-->
+        <activity android:name=".LogCatcherActivity">
 
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.in tent.category.LAUNCHER" /> -->
+            <!-- <category android:name="android.intent.category.START_APP" /> -->
+
+
+            <!-- &lt;!&ndash;        开机启动后会占用HOME界面        &ndash;&gt; -->
+            <!-- &lt;!&ndash;                <category android:name="android.intent.category.HOME" />&ndash;&gt; -->
+            <!-- &lt;!&ndash;                <category android:name="android.intent.category.DEFAULT" />&ndash;&gt; -->
+
+
+            <!-- </intent-filter> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-<!--                <category android:name="android.intent.category.START_APP" />-->
+                <!-- <category android:name="android.intent.category.START_APP" /> -->
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!-- android:name="android.support.v4.content.FileProvider" -->
+        </activity> <!-- android:name="android.support.v4.content.FileProvider" -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -47,33 +47,34 @@
                 android:resource="@xml/provider_apk_paths" />
         </provider>
 
+        <receiver android:name=".boardcast.SilenceInstallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver> <!-- 广播的静态注册方式 -->
+        <!-- 开机自启 -->
+        <!-- <receiver -->
+        <!-- android:name=".boardcast.BootCompleteReceiver" -->
+        <!-- android:enabled="true" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED"/> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- 静默安装 -->
         <service
             android:name=".service.LogCatcherService"
             android:enabled="true"
-            android:exported="true">
-        </service>
-
-        <!--        广播的静态注册方式       -->
-        <!--     开机自启   -->
-<!--        <receiver-->
-<!--            android:name=".boardcast.BootCompleteReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED"/>-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
-
-        <!--     静默安装   -->
-        <receiver android:name=".boardcast.SilenceInstallReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package"/>
-            </intent-filter>
-        </receiver>
-
+            android:exported="true"></service>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
 </manifest>

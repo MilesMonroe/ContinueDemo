@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.okhttp_xml_jason_test;
+package com.example.log_catcher.test_demo.test2_okhttp_xml_jason;
 
 import android.content.Context;
 import android.os.Environment;
@@ -9,14 +9,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.log_catcher.R;
-import com.example.log_catcher.test_demo.xml_json_test.xml.XmlSaxHandlerHelper;
 import com.example.log_catcher.util.LogHelper;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
@@ -51,7 +49,7 @@ public class Okhttp4Demo extends LinearLayout implements View.OnClickListener {
 
     public Okhttp4Demo(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.layout2_okhttp,this);
+        LayoutInflater.from(context).inflate(R.layout.demo2_okhttp,this);
 
         initView();
         initData();

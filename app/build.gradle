@@ -37,6 +37,12 @@ android {
             //
         }
     }
+
+    //引入对 DataBinding 的支持
+    dataBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -49,6 +55,19 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.2.2'
     implementation project(path: ':DFileSelector_modile')
     implementation 'com.alibaba:fastjson:1.1.55.android'
-    //apache.commons.io里面提供了输入流输出流的常用工具方法
+
+    //=====apache.commons.io里面提供了输入流输出流的常用工具方法======
     implementation 'commons-io:commons-io:2.4'
+
+    //===========Rxjava的依赖============
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
+
+//    //==========Retrofit的依赖===========
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+//    //Gson converter
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+//    //RxJava　adapter
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 }

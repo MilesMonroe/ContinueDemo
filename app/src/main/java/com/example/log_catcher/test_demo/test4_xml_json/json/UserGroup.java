@@ -1,4 +1,4 @@
-package com.example.log_catcher.test_demo.xml_json_test.json;
+package com.example.log_catcher.test_demo.test4_xml_json.json;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -30,3 +30,6 @@
 15、调整按键布局，采用自定义方式,且每个测试案例有单独对应的布局;
 16、优化单例模式，具体体现在LogHelper的使用中;
 17、加入apache.commons.io里面提供了输入流输出流的常用工具方法;
+18、增加Databinding方式的简洁UI刷新方法,包含Stuent和UserObservable两种方式;
+19、完成RxJava的基本操作
+20、Retrofit及Retrofit+RxJava的实例未完待续；
