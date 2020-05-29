@@ -1,12 +1,14 @@
 package com.example.log_catcher.test_demo.test6_rxjava_retrofit;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.log_catcher.R;
@@ -14,7 +16,9 @@ import com.example.log_catcher.util.LogHelper;
 
 import android.os.Message;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.Nullable;
@@ -29,6 +33,17 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 //import com.google.gson.Gson;
 
@@ -54,9 +69,10 @@ public class RxJavaRetrofitTest extends LinearLayout implements View.OnClickList
 
     private Button bt_rxjava_test1,bt_rxjava_test2,bt_rxjava_test3,bt_rxjava_test4,
                    bt_rxjava_test5,bt_rxjava_test6,bt_rxjava_test7,bt_rxjava_test8,
-                   bt_retrofit_test1,bt_retrofit_test2;
+                   bt_retrofit_test1,bt_retrofit_test2,bt_retrofit_test3,bt_retrofit_test4;
     private Handler mHandler;
     private Context mContext;
+    private ImageView image1;
 
     public RxJavaRetrofitTest(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -99,7 +115,13 @@ public class RxJavaRetrofitTest extends LinearLayout implements View.OnClickList
         bt_retrofit_test2 = findViewById(R.id.bt_retrofit_test2);
         bt_retrofit_test2.setOnClickListener(this);
 
+        bt_retrofit_test3 = findViewById(R.id.bt_retrofit_test3);
+        bt_retrofit_test3.setOnClickListener(this);
 
+        bt_retrofit_test4 = findViewById(R.id.bt_retrofit_test4);
+        bt_retrofit_test4.setOnClickListener(this);
+
+        image1 = findViewById(R.id.image1);
     }
 
     void initData(){
@@ -144,18 +166,26 @@ public class RxJavaRetrofitTest extends LinearLayout implements View.OnClickList
                 break;
             case R.id.bt_retrofit_test1:
                 LogHelper.getInstance().w("-------------bt_retrofit_test1------------");
-//                RxJavaDebugFlatMapUsedKeyword();
+                retrofitGet();
                 break;
             case R.id.bt_retrofit_test2:
                 LogHelper.getInstance().w("-------------bt_retrofit_test2------------");
-//                RxJavaDebugFlatMapUsedKeyword();
+                retrofitGetWithRxJava();
                 break;
-
+            case R.id.bt_retrofit_test3:
+                LogHelper.getInstance().w("-------------bt_retrofit_test3------------");
+                retrofitGetByGson();
+                break;
+            case R.id.bt_retrofit_test4:
+                LogHelper.getInstance().w("-------------bt_retrofit_test4------------");
+//                retrofitGetWithRxJava();
+                break;
             default:
                 break;
         }
     }
 
+    //========================================Rxjava部分==================================
     /**示例1、RxJava的基本接口使用验证
      *
      */
@@ -420,7 +450,221 @@ public class RxJavaRetrofitTest extends LinearLayout implements View.OnClickList
         });
     }
 
+//========================================Retrofit部分==================================
+    //==========示例1、最简单的Retrofit请求使用=========
+    /**步骤1、创建用于配置网络请求的的接口
+     * 何为配置网络请求参数？
+     * 说白了就是设置网络请求的地址是什么、使用什么请求方法、传递的参数是什么、返回值类型是什么等等
+     * 一系列配置信息，通过接口描述清楚这些具体的网络配置信息，Retrofit才能根据你的配置发起最终的网络请求
+     */
+    public interface GetRequestInterface {
+        /**
+         *
+         *
+         * 通过get（）方法获取图片的请求接口
+         * GET注解中的参数值"2019-06-29-121904.png"和Retrofit的base url拼接在一起,
+         * 就是本次请求的最终地址
+         *
+         * @return
+         *
+         */
+        @GET("2019-06-29-121904.png")
+        Call<ResponseBody> getPictureCall();
+    }
 
+    /**步骤2、创建Retrofit实例并发起网络请求，点按钮将下载下来的图片显示在ImageView中:
+     * 实例来源: https://blog.csdn.net/qq_36982160/article/details/94201257
+     *备注:<细心的读者可能发现了一个问题，
+     * 在上面的代码中我是直接在CallBack接口的onResponse()回调方法中更新的ImageView，
+     * 即在onResponse()中更新UI的，在OkHttp中这个onResponse()方法是在子线程中被调用的，
+     * 而在Retrofit中，onResponse()和onFailure（）这两个回调方法都是在主线程进行调用的，
+     * 所以可以在其中直接更新UI，这也是Retrofit和OkHttp的一点不同之处>
+     */
+    public void retrofitGet() {
+        /*
+         创建Retrofit对象，这里设置了baseUrl，注意我们在声明网络配置接口GetRequestInterface的时候在GET注解中也声明了一个Url，
+         我们将会这里的baseUrl和GET注解中设置的Url拼接之后就可以形成最终网络请求实际访问的url
+         */
+        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("http://picture-pool.oss-cn-beijing.aliyuncs.com/")
+                                .build();
+
+        //通过反射，创建网络请求配置的接口实例
+        GetRequestInterface getRequestInterface = retrofit.create(GetRequestInterface.class);
+
+        //调用我们声明的getPictureCall（）方法创建Call对象
+        Call<ResponseBody> requestBodyCall = getRequestInterface.getPictureCall();
+
+        //使用requestBodyCall发起异步网络请求
+        requestBodyCall.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                //将网络请求返回的数据解析为图片并展示到界面
+                ResponseBody body = response.body();
+                InputStream inputStream = body.byteStream();
+                Drawable drawable = Drawable.createFromStream(inputStream, "pic.png");
+                image1.setBackground(drawable);
+                LogHelper.getInstance().w( "网络请求成功");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                LogHelper.getInstance().w( "网络请求失败，失败原因：" + t.getMessage());
+            }
+        });
+
+
+    }
+
+    //=====示例2、结合Rxjava后的简单Retrofit请求使用=====
+    public interface GetRequestInterfaceWithRxJava {
+        /**
+         * 通过get（）方法获取图片的请求接口
+         * GET注解中的参数值"2019-06-29-121904.png"和Retrofit的base url拼接在一起就是本次请求的最终地址
+         *
+         设置返回值类型为Observable的
+         * @return
+         */
+        @GET("2019-06-29-121904.png")
+        Observable<ResponseBody> getPictureCall();
+    }
+
+    public void retrofitGetWithRxJava() {
+        /*
+         创建Retrofit对象，这里设置了baseUrl，注意我们在声明网络配置接口GetRequestInterface的时候在GET注解中也声明了一个Url，
+         我们将会这里的baseUrl和GET注解中设置的Url拼接之后就可以形成最终网络请求实际访问的url
+         */
+        Retrofit retrofit = new Retrofit.Builder()
+                                    .baseUrl("http://picture-pool.oss-cn-beijing.aliyuncs.com/")
+                                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                                    .build();
+
+        //创建网络请求配置的接口实例
+        GetRequestInterfaceWithRxJava getRequestInterfaceWithRxJava = retrofit.create(GetRequestInterfaceWithRxJava.class);
+
+        //调用我们声明的getPictureCall（）方法创建Call对象
+        Observable<ResponseBody> requestObservable = getRequestInterfaceWithRxJava.getPictureCall();
+
+                         //subscribeOn(): 指定Observable(被观察者)所在的线程，或者叫做事件产生的线程。
+        requestObservable.subscribeOn(Schedulers.io())
+                          //observeOn():   指定 Observer(观察者)所运行在的线程，或者叫做事件消费的线程。
+                          .observeOn(AndroidSchedulers.mainThread())
+                          .subscribe(new Observer<ResponseBody>() {
+                                @Override
+                                public void onSubscribe(Disposable d) {
+                                    LogHelper.getInstance().w("onSubscribe");
+                                }
+
+                                @Override
+                                public void onNext(ResponseBody body) {
+                                    //将网络请求返回的数据解析为图片并展示到界面
+                                    InputStream inputStream = body.byteStream();
+                                    Drawable drawable = Drawable.createFromStream(inputStream, "pic.png");
+                                    image1.setBackground(drawable);
+                                    LogHelper.getInstance().w("网络请求成功");
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    LogHelper.getInstance().w("onError:" + e.getMessage());
+                                }
+
+                                @Override
+                                public void onComplete() {
+                                    LogHelper.getInstance().w("onComplete");
+                                }
+                          });
+
+
+    }
+
+    //============示例3、结合GET之后通过Gson解析报文===========
+    //实例参考网址:https://blog.csdn.net/carson_ho/article/details/73732076
+    public interface GetRequest_Interface {
+
+        @GET("ajax.php?a=fy&f=auto&t=auto&w=hello%20world")
+        Call<Translation> getCall();
+    }
+
+    // Path关键字使用；
+    // 作用：在发起请求时， {queryContent} 会被替换为方法的第一个参数 user（被@Path注解作用
+    public interface GetRequestWithPath_Interface {
+//        @GET("ajax.php?a=fy&f=auto&t=auto&w=hello%20world")
+        @GET("{ajax}.php?a=fy&f=auto&t=auto&w=eat%20apple")
+        //注意？后面的内容不能用@Path关键字，因为是动态的，需要用Query；否则会报错;
+        //例如: @GET("ajax.php?a=fy&f=auto&t=auto&w={translateContent}"),这样是不行的！！！
+        Call<Translation> getCall(@Path("ajax") String repalceContent);
+    }
+
+    // Query关键字使用；@Query和@QueryMap
+    // 作用：用于 @GET 方法的查询参数（Query = Url 中 ‘?’ 后面的 key-value）
+    // 《例如: url = http://www.println.net/?cate=android，其中，Query = cate
+    //        @GET("/")
+    //        Call<String> cate(@Query("cate") String cate);
+    //  》
+    public interface GetRequestWithQuery_Interface {
+//        @GET("ajax.php?a=fy&f=auto&t=auto&w=hello%20world")
+        @GET("ajax.php")
+        Call<Translation> getCall(@QueryMap HashMap<String, String>queryContent);
+    }
+
+    /**
+     *
+     */
+    public void retrofitGetByGson() {
+        //步骤4:创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://fy.iciba.com/") // 设置 网络请求 Url
+                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .build();
+
+        //==============1、普通GET===========
+//        // 步骤5:创建 网络请求接口 的实例
+//        GetRequest_Interface requestCall = retrofit.create(GetRequest_Interface.class);
+//        //对 发送请求 进行封装
+//        Call<Translation> call = requestCall.getCall();
+
+        //==============2、GET中@Path关键字替换===========
+//        // 步骤5:创建 网络请求接口 的实例
+//        GetRequestWithPath_Interface requestCall = retrofit.create(GetRequestWithPath_Interface.class);
+//        //对 发送请求 进行封装
+//        Call<Translation> call = requestCall.getCall("ajax");
+
+        //==============3、GET中@Path关键字替换===========
+        // 步骤5:创建 网络请求接口 的实例
+        GetRequestWithQuery_Interface requestCall = retrofit.create(GetRequestWithQuery_Interface.class);
+//      @GET("ajax.php?a=fy&f=auto&t=auto&w=hello%20world")
+        HashMap<String, String> queryContent = new HashMap<>();
+        queryContent.put("a", "fy");
+        queryContent.put("f", "auto");
+        queryContent.put("t", "auto");
+        queryContent.put("w", "hello bird");
+
+        //对 发送请求 进行封装
+        Call<Translation> call = requestCall.getCall(queryContent);
+
+
+        //步骤6:发送网络请求(异步)
+        call.enqueue(new Callback<Translation>() {
+            //请求成功时回调
+            @Override
+            public void onResponse(Call<Translation> call, Response<Translation> response) {
+                // 步骤7：处理返回的数据结果
+                response.body().showJson();
+            }
+
+            //请求失败时回调
+            @Override
+            public void onFailure(Call<Translation> call, Throwable throwable) {
+                System.out.println("连接失败");
+            }
+        });
+    }
+
+
+
+    //=====================主线程中消息弹框====================
     //提示信息
     public void showHandlerMsg(String operation, Bundle bundle) {
         Message msg = new Message();

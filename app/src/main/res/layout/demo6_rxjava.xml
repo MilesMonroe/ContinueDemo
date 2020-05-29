@@ -199,12 +199,50 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="bt_retrofit链式使用接口演示"
+                android:text="bt_retrofit结合Rxjava的演示"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
+
+            <Button
+                android:id="@+id/bt_retrofit_test3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="bt_retrofit使用Gson和关键字解析的演示"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+            <Button
+                android:id="@+id/bt_retrofit_test4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="bt_retrofitXX"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"
                 />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="400dp"
+            android:layout_height="240dp"
+            android:background="@color/color_CCCCCC"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            />
     </LinearLayout>
 </LinearLayout>

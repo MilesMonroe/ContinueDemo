@@ -32,4 +32,7 @@
 17、加入apache.commons.io里面提供了输入流输出流的常用工具方法;
 18、增加Databinding方式的简洁UI刷新方法,包含Stuent和UserObservable两种方式;
 19、完成RxJava的基本操作
-20、Retrofit及Retrofit+RxJava的实例未完待续；
+20、Retrofit及Retrofit+RxJava的实例----------未完待续；
+    1、实现了retrofit普通Get获取一张图片;
+    1、实现了retrofit结合Rxjava链式Get获取一张图片;
+    3、实现了retrofit普通Get，通过Gson解析报文，并完成@Path、@Query、@QueryMap关键字测试;
