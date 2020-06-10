@@ -64,6 +64,7 @@ public class FastJsonTest {
             String ListUserJson = JSON.toJSONString(users);
             LogHelper.getInstance().w("List<Object>转json字符串:" + ListUserJson);
 
+
             // 复杂java类转json字符串
             UserGroup userGroup = new UserGroup("userGroup", users);
             String userGroupJson = JSON.toJSONString(userGroup);
@@ -79,8 +80,11 @@ public class FastJsonTest {
            * json字符串转简单java对象 字符串：{"password":"123456","username":"dmego"}
            */
              String jsonStr1 = "{'password':'123456','username':'dmego'}";
+//             String jsonStr1 = "{'username':'dmego','password':'123456'}";
              User user = JSON.parseObject(jsonStr1, User.class);
+             //得到打印数据: json字符串转简单java对象:User [username=dmego, password=123456]
              LogHelper.getInstance().w("json字符串转简单java对象:" + user.toString());
+
 
            /*
            * json字符串转List<Object>对象

@@ -36,3 +36,10 @@
     1、实现了retrofit普通Get获取一张图片;
     1、实现了retrofit结合Rxjava链式Get获取一张图片;
     3、实现了retrofit普通Get，通过Gson解析报文，并完成@Path、@Query、@QueryMap关键字测试;
+    4、加入了网络拦截器，用于调试打印组包后的请求头http通讯日志;
+    5、实现了retrofit普通Post，并完成@Field、@FieldMap、@Body关键字测试;
+21、解决了getFileOrFilesSize接口返回null的问题，需在manifest中加读写权限，否则会读到null
+22、增加抽象类ABS_Test的用法，其中加了abstract关键字的接口必须覆写，其余随意;
+23、通过File-->new-->Vector Asset内置AS自带的矢量图（demo7_viewmodel_activity.xml中两个按钮背景）;
+24、在viewmodel测试中顺便加入Lambda表达式的测试项;
+25、在RxjavaTest中加入了map和flatMap的区别演示项;

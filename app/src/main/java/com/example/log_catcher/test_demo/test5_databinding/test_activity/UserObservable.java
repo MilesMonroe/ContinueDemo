@@ -4,9 +4,9 @@ import androidx.databinding.ObservableField;
 
 /**
  * 省去了Student中的以下几步:
- * 1、本类继承BaseObservable
- * 2、先看看getter方法，所有的getter方法都添加了一个注解@Bindable，它支持该属性在BR类中产生一个对应的静态int类型常量(至于什么是BR，你可以认为它类似于我们认识的R类)；
- * 3、另一个变化就是setter方法中多了一句notifyPropertyChanged(BR.xxx);代码，该代码用来通知刷新当前显示的那个布局：
+ *    1、继承BaseObservable
+ *    2、先看看getter方法，所有的getter方法都添加了一个注解@Bindable，它支持该属性在BR类中产生一个对应的静态int类型常量(至于什么是BR，你可以认为它类似于我们认识的R类)；
+ *    3、另一个变化就是setter方法中多了一句notifyPropertyChanged(BR.xxx);代码，该代码用来通知刷新当前显示的那个布局：
  */
 public class UserObservable {
     public  ObservableField<String> name = new ObservableField<>();

@@ -151,7 +151,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="bt_rxjava使用FlatMapUsedKeyword演示"
+                android:text="bt_rxjava中Map与FlatMap的区别演示"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"
@@ -219,7 +219,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="bt_retrofit使用Gson和关键字解析的演示"
+                android:text="bt_retrofit使用Gson和关键字解析的GET演示"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"
@@ -229,13 +229,41 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="bt_retrofitXX"
+                android:text="bt_retrofit使用Gson和关键字解析的POST演示"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:layout_margin="6dp"
                 />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            >
 
+            <Button
+                android:id="@+id/bt_retrofit_test5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="bt_retrofit使用POST和关键字解析Part演示"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+            <Button
+                android:id="@+id/bt_retrofit_test6"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="bt_retrofit 文件下载演示"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:layout_margin="6dp"
+                />
+        </LinearLayout>
         <ImageView
             android:id="@+id/image1"
             android:layout_width="400dp"

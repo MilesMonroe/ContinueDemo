@@ -154,7 +154,13 @@
             android:layout_margin="16dp"
             />
 
-
+        <!--    7_View Model Tet    -->
+        <com.example.log_catcher.test_demo.test7_viewmodel.ViewModelTest
+            android:id="@+id/view_model_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
 <!--        &lt;!&ndash;    OKhttp测试项    &ndash;&gt;-->
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->

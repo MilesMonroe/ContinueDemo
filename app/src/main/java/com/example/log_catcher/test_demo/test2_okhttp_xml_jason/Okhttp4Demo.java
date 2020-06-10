@@ -223,43 +223,6 @@ public class Okhttp4Demo extends LinearLayout implements View.OnClickListener {
         }
     }
 
-    //1.2、Synchronous Get 流方式（同步Get）对于下载超过1MB的数据，采用流方式下载(未完待续)
-    String httpGetSync(OkHttpClient client) throws IOException {
-//        String url = "http://publicobject.com/helloworld.txt";
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-//        Response response = client.newCall(request).execute();
-//        if (response.isSuccessful()) {
-//
-//            //打印Headers
-//            LogHelper.getInstance().w("-------------打印Headers---------------");
-//
-//            Headers responseHeaders = response.headers();
-//            LogHelper.getInstance().w("responseHeaders.size()="+responseHeaders.size());
-//            for (int i = 0; i < responseHeaders.size(); i++) {
-//                LogHelper.getInstance().w(responseHeaders.name(i) + ": " + responseHeaders.value(i));
-//            }
-//            LogHelper.getInstance().w("\n\n-------------打印body.string---------------");
-//            //数据太多，不打印
-////            String responseBodyString = response.body().string();
-//            InputStream responseBodyIs = response.body().byteStream();
-////            LogHelper.getInstance().w(responseBodyIs);
-//
-//            responseBodyIs.reset();
-//
-//            LogHelper.getInstance().w("\n\n-------------打印整个response---------------");
-//            //收到如下数据: Response{protocol=http/1.1, code=200, message=OK, url=https://www.baidu.com/}
-//            LogHelper.getInstance().w(String.valueOf(response));
-//
-//            return responseBodyString;
-//        } else {
-//            LogHelper.getInstance().w("response="+response);
-//            throw new IOException("Unexpected code:" + response.code());
-//        }
-        return "XXX";
-    }
-
     //1.3、ASynchronous Get（异步Get）
     void httpGetASync(OkHttpClient client) throws IOException {
         //大数据（json）获取的网址

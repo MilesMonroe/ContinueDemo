@@ -34,7 +34,12 @@ import com.example.log_catcher.service.LogCatcherService;
 
 import com.example.log_catcher.test_demo.test5_databinding.DataBindingTest;
 import com.example.log_catcher.test_demo.test5_databinding.test_activity.TestActivity;
+import com.example.log_catcher.test_demo.test7_viewmodel.nomal_activity.NoneViewModelTestActivity;
+
 import com.example.log_catcher.test_demo.test4_xml_json.XmlJasonParseTest;
+import com.example.log_catcher.test_demo.test7_viewmodel.ViewModelTest;
+import com.example.log_catcher.test_demo.test7_viewmodel.viewmodel_actiity.NormalViewModelTestActivity;
+import com.example.log_catcher.util.ERROR;
 import com.example.log_catcher.util.LogHelper;
 
 import java.io.BufferedReader;
@@ -45,9 +50,11 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 //import android.support.v4.content.FileProvider;
 
-public class LogCatcherActivity extends AppCompatActivity implements View.OnClickListener, DataBindingTest.DataBindingListener {
+public class LogCatcherActivity extends AppCompatActivity implements View.OnClickListener, DataBindingTest.DataBindingListener
+                                                            , ViewModelTest.ViewModelTestListener {
     private final String TAG = "Miles";
     private Button bt_start_service;
     private Button bt_stop_service;
@@ -65,6 +72,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
     private String selectFilePath = null;
     XmlJasonParseTest xmlJasonParseTest;
     DataBindingTest dataBindingTest;
+    ViewModelTest viewModelTest;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -120,6 +128,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         //================xml调试布局===================
         xmlJasonParseTest = findViewById(R.id.layout_file_select);
         dataBindingTest = findViewById(R.id.databinding_test);
+        viewModelTest = findViewById(R.id.view_model_test);
 
     }
 
@@ -140,6 +149,8 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         b = a.trim();
         LogHelper.getInstance().w("222b=" + b);
 
+
+
 //        //启动时间刷新
         time_run_flag = true;
         new TimeThread().start();
@@ -159,6 +170,9 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
 
         //--------------demo5 DataBindingDemo-----------------
         dataBindingTest.setDataBindingListener(LogCatcherActivity.this);
+
+        //--------------demo7 viewModelTest-----------------
+        viewModelTest.setViewModelTestListener(LogCatcherActivity.this);
     }
 
     //提示信息
@@ -351,6 +365,19 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
+    //==================================demo7 ViewModel测试所需的接口实现============================================
+    @Override
+    public void startNoneViewModelTestAcivity(){
+        Intent intent = new Intent(mContext, NoneViewModelTestActivity.class);
+        startActivity(intent);
+    }
+    @Override
+    public void startNormalViewModelTestAcivity(){
+        Intent intent = new Intent(mContext, NormalViewModelTestActivity.class);
+        startActivity(intent);
+    }
+
+
     //==================================文件权限============================================
     void requestPermission() {
         //动态权限申请
@@ -448,6 +475,34 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
             isRegister = false;
         }
         super.onDestroy();
+    }
+
+//==============================正则表达式===========================================
+    /**设置BLE模式的MAC地址;<br>
+     *
+     * @param MacAddr 设置的MAC地址，要求为12个字符即可，无需添加:或-间隔符<br>
+     * @return 0:成功<br>
+     *         !0:失败<br>
+     */
+    public int setBLEMac(String MacAddr) {
+
+        int ret = -1;
+        byte[] info = new byte[100];
+        String recvInfo = null;
+
+        if (MacAddr == null) {
+            return ERROR.ERR_FAIL;
+        }
+
+        String patternMac = "^([a-fA-F0-9]{2}){6}$";
+        Pattern pa = Pattern.compile(patternMac);
+        boolean isMac = pa.matcher(MacAddr).find();
+        if (!isMac) {
+            LogHelper.getInstance().w("MacAddr=" + MacAddr + "invalid");
+            return ERROR.ERR_PARAM;
+        }
+
+        return ERROR.SUCCESS;
     }
 
 }

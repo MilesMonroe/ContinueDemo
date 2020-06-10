@@ -2,7 +2,7 @@ package com.example.log_catcher.test_demo.test6_rxjava_retrofit;
 
 import com.example.log_catcher.util.LogHelper;
 
-public class Persion {
+public class Persion extends ABC_Test {
 
     private String name = "baby";
     private int age = 1;
@@ -32,4 +32,13 @@ public class Persion {
         this.age = age;
     }
 
+    @Override
+    public void printf() {
+        LogHelper.getInstance().w("it is ABS_Test = printf()");
+    }
+
+    @Override
+    public void printf2() {
+        LogHelper.getInstance().w("it is ABS_Test = printf2()");
+    }
 }
