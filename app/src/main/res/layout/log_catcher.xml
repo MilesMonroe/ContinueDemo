@@ -161,6 +161,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             />
+
+        <!--    8_Click Tet    -->
+        <com.example.log_catcher.test_demo.test8_click.ClickDemo
+            android:id="@+id/click_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            />
 <!--        &lt;!&ndash;    OKhttp测试项    &ndash;&gt;-->
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->

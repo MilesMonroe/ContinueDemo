@@ -43,3 +43,5 @@
 23、通过File-->new-->Vector Asset内置AS自带的矢量图（demo7_viewmodel_activity.xml中两个按钮背景）;
 24、在viewmodel测试中顺便加入Lambda表达式的测试项;
 25、在RxjavaTest中加入了map和flatMap的区别演示项;
+26、在test_json_bean.java中展示了GsonFormat插件的使用方法，作用:可根据已知的json报文生成对应的Bean
+27、加入Click Demo测试项，用于开挂，没有成功，只实现了获取当前屏幕分别率和点击时的圆形坐标；

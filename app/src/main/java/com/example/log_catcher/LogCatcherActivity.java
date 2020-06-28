@@ -39,6 +39,8 @@ import com.example.log_catcher.test_demo.test7_viewmodel.nomal_activity.NoneView
 import com.example.log_catcher.test_demo.test4_xml_json.XmlJasonParseTest;
 import com.example.log_catcher.test_demo.test7_viewmodel.ViewModelTest;
 import com.example.log_catcher.test_demo.test7_viewmodel.viewmodel_actiity.NormalViewModelTestActivity;
+import com.example.log_catcher.test_demo.test8_click.ClickActivity;
+import com.example.log_catcher.test_demo.test8_click.ClickDemo;
 import com.example.log_catcher.util.ERROR;
 import com.example.log_catcher.util.LogHelper;
 
@@ -54,7 +56,7 @@ import java.util.regex.Pattern;
 //import android.support.v4.content.FileProvider;
 
 public class LogCatcherActivity extends AppCompatActivity implements View.OnClickListener, DataBindingTest.DataBindingListener
-                                                            , ViewModelTest.ViewModelTestListener {
+                                                            , ViewModelTest.ViewModelTestListener, ClickDemo.CliclTestListener {
     private final String TAG = "Miles";
     private Button bt_start_service;
     private Button bt_stop_service;
@@ -73,6 +75,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
     XmlJasonParseTest xmlJasonParseTest;
     DataBindingTest dataBindingTest;
     ViewModelTest viewModelTest;
+    ClickDemo clickTest;
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -129,7 +132,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         xmlJasonParseTest = findViewById(R.id.layout_file_select);
         dataBindingTest = findViewById(R.id.databinding_test);
         viewModelTest = findViewById(R.id.view_model_test);
-
+        clickTest = findViewById(R.id.click_test);
     }
 
     void initData() {
@@ -173,6 +176,9 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
 
         //--------------demo7 viewModelTest-----------------
         viewModelTest.setViewModelTestListener(LogCatcherActivity.this);
+
+        //--------------demo8 ClickTest-----------------
+        clickTest.set_Click_Listener(LogCatcherActivity.this);
     }
 
     //提示信息
@@ -257,7 +263,7 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
                 LogHelper.getInstance().w("path:" + apkFilePath);
 //                File firmwareFile= new File(filePath);
 //                ApkUtils.installAPK(mContext,apkFilePath);
-                LogHelper.getInstance().w("Capacity=" + getCurrentCapacity());
+//                LogHelper.getInstance().w("Capacity=" + getCurrentCapacity());
 //                installSilenceApp(apkFilePath);
 //                callAnotherApk(mContext, "com.example.myapplication", "com.example.myapplication.MainActivity",2);
 //                startApp(mContext);
@@ -324,40 +330,6 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-    /**
-     * 获取当前电量
-     * <p>
-     * adb shell "cat /sys/class/power_supply/battery/capacity"
-     */
-    private int getCurrentCapacity() {
-        int result = 0;
-        BufferedReader br = null;
-        try {
-            String line;
-            br = new BufferedReader(new FileReader("/sys/class/power_supply/battery/capacity"));
-            if ((line = br.readLine()) != null) {
-                result = Integer.parseInt(line);
-                //Log.w(TAG2,"getCurrentChargingCurrent="+result);
-            }
-
-            br.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return result;
-    }
-
     //==================================demo5 DataBinding测试所需的接口实现============================================
     @Override
     public void startDataBindingTestAcivity(){
@@ -377,7 +349,11 @@ public class LogCatcherActivity extends AppCompatActivity implements View.OnClic
         startActivity(intent);
     }
 
-
+    @Override
+    public void startClickTestAcivity(){
+        Intent intent = new Intent(mContext, ClickActivity.class);
+        startActivity(intent);
+    }
     //==================================文件权限============================================
     void requestPermission() {
         //动态权限申请

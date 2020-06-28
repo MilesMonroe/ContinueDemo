@@ -19,6 +19,18 @@ import java.util.Locale;
 public class TimeUtil {
 
     /**
+     * 毫秒级别延时
+     * @param millis
+     */
+    public static void delayMs(int millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 默认的时间 String 模式
      */
     private static final String DEFAULT_PATTERN = "yyyy-MM-dd HH:mm:ss";

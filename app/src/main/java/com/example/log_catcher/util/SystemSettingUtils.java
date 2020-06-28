@@ -4,6 +4,7 @@ import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.view.WindowManager;
 
 
 /**该类用于系统相关的设置，本类试验于Android 7.0版本
@@ -99,5 +100,16 @@ public class SystemSettingUtils {
         mContext.sendBroadcast(intent);
     }
 
-
+    /**
+     *
+     * @param context
+     * @return
+     */
+    public static int[] getScreenDispaly(Context context) {
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        int width = windowManager.getDefaultDisplay().getWidth();// 手机屏幕的宽度
+        int height = windowManager.getDefaultDisplay().getHeight();// 手机屏幕的高度
+        int result[] = {width, height};
+        return result;
+    }
 }

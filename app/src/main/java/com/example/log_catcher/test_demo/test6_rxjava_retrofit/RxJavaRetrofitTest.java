@@ -936,7 +936,7 @@ public class RxJavaRetrofitTest extends LinearLayout implements View.OnClickList
                                   @Part MultipartBody.Part file);
     }
 
-    /**本示例完成实现了retrofit普通POST，通过Gson解析报文，
+    /**本示例完成实现了retrofit上传文件的演示
      * 并完成@Part关键字测试;
      */
     public void retrofitPartByGson() {
